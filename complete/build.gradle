@@ -38,7 +38,6 @@ configurations {
 }
 
 dependencies {
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
     compile "org.springframework.boot:spring-boot-starter-logging"
     compile "org.springframework.boot:spring-boot-autoconfigure"
     compile "org.grails:grails-core"
@@ -72,7 +71,7 @@ dependencies {
     testCompile "org.grails:grails-web-testing-support"
     testCompile "org.grails.plugins:geb"
     //tag::secDependency[]
-    compile 'org.grails.plugins:spring-security-core:3.2.1'
+    compile 'org.grails.plugins:spring-security-core:4.0.0.BUILD-SNAPSHOT'
    //end::secDependency[]
 }
 

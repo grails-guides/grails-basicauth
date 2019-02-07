@@ -1,18 +1,28 @@
 package example.grails
 
-import grails.plugins.rest.client.RestBuilder
-import grails.plugins.rest.client.RestResponse
 import grails.testing.mixin.integration.Integration
+import grails.testing.spock.OnceBefore
+import io.micronaut.http.HttpRequest
+import io.micronaut.http.HttpResponse
+import io.micronaut.http.HttpStatus
+import io.micronaut.http.client.HttpClient
 import spock.lang.Specification
 
 @Integration
 class HomeControllerSpec extends Specification {
 
     UserDataService userDataService
+    HttpClient client
+
+    @OnceBefore
+    void init() {
+        String baseUrl = "http://localhost:$serverPort"
+        this.client  = HttpClient.create(baseUrl.toURL())
+    }
 
     def "verify basic auth is possible"() {
         given:
-        RestBuilder rest = new RestBuilder()
+
         final String username = 'sherlock'
         final String password = 'elementary'
 
@@ -24,15 +34,14 @@ class HomeControllerSpec extends Specification {
 
         when:
         String token = "${username}:${password}".encodeAsBase64()
-        RestResponse rsp = rest.get("http://localhost:${serverPort}/home") {
-            auth("Basic $token")
-        }
+        HttpResponse<Map> rsp = client.toBlocking().exchange(HttpRequest.GET("/home").header("Authorization",
+                "Basic $token"), Map)
 
         then:
-        rsp.status == 200
+        rsp.status == HttpStatus.OK
 
         and:
-        rsp.json.username == username
+        rsp.body().username == username
 
         cleanup:
         userDataService?.delete(user?.id)

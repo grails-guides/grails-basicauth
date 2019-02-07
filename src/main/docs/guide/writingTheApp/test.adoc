@@ -5,3 +5,5 @@ Create a test which verifies the user authentication flow via Basic Auth.
 ----
 include::{sourceDir}/src/integration-test/groovy/example/grails/HomeControllerSpec.groovy[]
 ----
+
+To run tests, do `./gradlew test`

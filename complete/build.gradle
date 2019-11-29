@@ -71,7 +71,7 @@ dependencies {
     testCompile "org.grails:grails-web-testing-support"
     testCompile "org.grails.plugins:geb"
     //tag::secDependency[]
-    compile 'org.grails.plugins:spring-security-core:4.0.0.BUILD-SNAPSHOT'
+    compile 'org.grails.plugins:spring-security-core:4.0.0.RC2'
    //end::secDependency[]
 }
 

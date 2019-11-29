@@ -22,7 +22,6 @@ class HomeControllerSpec extends Specification {
 
     def "verify basic auth is possible"() {
         given:
-
         final String username = 'sherlock'
         final String password = 'elementary'
 
@@ -33,9 +32,9 @@ class HomeControllerSpec extends Specification {
         userDataService.count() == old(userDataService.count()) + 1
 
         when:
-        String token = "${username}:${password}".encodeAsBase64()
-        HttpResponse<Map> rsp = client.toBlocking().exchange(HttpRequest.GET("/home").header("Authorization",
-                "Basic $token"), Map)
+        HttpRequest request = HttpRequest.GET("/home")
+                .basicAuth(username, password)
+        HttpResponse<Map> rsp = client.toBlocking().exchange(request, Map)
 
         then:
         rsp.status == HttpStatus.OK

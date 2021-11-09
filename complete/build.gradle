@@ -69,6 +69,9 @@ dependencies {
     testImplementation "io.micronaut:micronaut-http-client"
     testImplementation "org.grails:grails-web-testing-support"
     testImplementation "org.grails.plugins:geb"
+    //tag::secDependency[]
+    compile 'org.grails.plugins:spring-security-core:4.0.0.RC2'
+    //end::secDependency[]
 }
 
 bootRun {

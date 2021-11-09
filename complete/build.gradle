@@ -2,7 +2,7 @@ buildscript {
     repositories {
     }
     dependencies {
-        classpath "org.grails:grails-gradle-plugin:$grailsVersion"
+        classpath "org.grails:grails-gradle-plugin:$grailsGradlePluginVersion"
         classpath "org.grails.plugins:hibernate5:7.1.0"
         classpath "org.grails.plugins:views-gradle:2.0.0.RC2"
     }

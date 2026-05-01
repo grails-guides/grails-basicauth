@@ -1,3 +1,0 @@
-Create an app with the `rest-api` profile
-
-`grails create-app example --profile=rest-api`
